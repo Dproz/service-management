@@ -4,9 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Objects;
 
 /**
  * @author iddymagohe on 10/23/17.
@@ -15,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Document(collection = "services")
+@TypeAlias("services")
 public class ServiceDetail {
 
     @Id
@@ -26,13 +31,23 @@ public class ServiceDetail {
     @Indexed
     private String lang = "en";
 
-    @Transient
+    @DBRef
     private ServiceCategory category;
-
-    @Indexed
-    private long categoryNumber;
 
     @TextIndexed
     private String serviceDescription;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ServiceDetail that = (ServiceDetail) o;
+        return serviceNumber == that.serviceNumber &&
+                Objects.equals(category, that.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(serviceNumber, category);
+    }
 }

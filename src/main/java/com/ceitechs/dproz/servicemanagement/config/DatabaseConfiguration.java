@@ -35,7 +35,7 @@ import static java.util.stream.Collectors.toList;
 @Configuration
 @EnableMongoRepositories("com.ceitechs.dproz.servicemanagement.adapter.datastore.mongo")
 @Import(value = MongoAutoConfiguration.class)
-@EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
+//@EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
 public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
     private final static String HOSTS_SEPARATOR = ",";
@@ -82,12 +82,14 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
     @Bean
     public Mongobee mongobee(MongoClient mongoClient, MongoTemplate mongoTemplate, MongoProperties mongoProperties) {
         log.debug("Configuring Mongobee" + uri);
+         mongoClient = mongoClient();
         Mongobee mongobee = new Mongobee(mongoClient);
-        mongobee.setDbName(mongoProperties.getDatabase());
+        mongobee.setDbName(getDatabaseName());
         mongobee.setMongoTemplate(mongoTemplate);
         // package to scan for migrations
-        mongobee.setChangeLogsScanPackage("com.ceitechs.dproz.config.dbmigrations");
         mongobee.setEnabled(true);
+        mongobee.setChangeLogsScanPackage("com.ceitechs.dproz.config.dbmigrations");
+
         return mongobee;
     }
 
