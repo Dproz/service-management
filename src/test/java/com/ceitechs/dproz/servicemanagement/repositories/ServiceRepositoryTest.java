@@ -2,12 +2,16 @@ package com.ceitechs.dproz.servicemanagement.repositories;
 
 import com.ceitechs.dproz.servicemanagement.AbstractDprozServiceIntegrationTest;
 import com.ceitechs.dproz.servicemanagement.adapter.datastore.mongo.CategoryRepository;
-import com.ceitechs.dproz.servicemanagement.adapter.datastore.mongo.ServiceDetailRepository;
+import com.ceitechs.dproz.servicemanagement.adapter.datastore.mongo.ServiceRepository;
 import com.ceitechs.dproz.servicemanagement.domain.ServiceCategory;
 import com.ceitechs.dproz.servicemanagement.domain.ServiceDetail;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -19,7 +23,7 @@ public class ServiceRepositoryTest extends AbstractDprozServiceIntegrationTest {
     private CategoryRepository categoryRepository;
 
     @Autowired
-    private ServiceDetailRepository serviceDetailRepository;
+    private ServiceRepository serviceDetailRepository;
 
 
 
@@ -35,9 +39,6 @@ public class ServiceRepositoryTest extends AbstractDprozServiceIntegrationTest {
 
 
 
-
-
-
     @Test
     public void createCategoryTest(){
         categoryRepository.deleteAll();
@@ -45,6 +46,28 @@ public class ServiceRepositoryTest extends AbstractDprozServiceIntegrationTest {
         ServiceCategory svc = categoryRepository.save(sc);
         assertEquals("saved and about to be saved service-category, must be equal", sc, svc);
     }
+
+    @Test
+    public void findCategoriesByDisciplineTest(){
+        categoryRepository.deleteAll();
+        serviceDetailRepository.deleteAll();
+        categoryRepository.save(createCategory());
+
+       List<ServiceCategory> categoryList = categoryRepository.findByDisciplineIgnoreCase("HousIng construction");
+       assertTrue(categoryList.size() > 0);
+    }
+
+    @Test
+    public void findServiceDescriptionTest(){
+        categoryRepository.deleteAll();
+        serviceDetailRepository.deleteAll();
+        categoryRepository.save(createCategory());
+        ServiceDetail sd = createServiceDetail();
+        ServiceDetail svd = serviceDetailRepository.save(sd);
+        List<ServiceDetail> serviceDetails = serviceDetailRepository.findByserviceDescriptionAndLang("fence", "en");
+        assertTrue(serviceDetails.size() > 0);
+    }
+
 
 
     private ServiceCategory createCategory() {

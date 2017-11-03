@@ -1,6 +1,7 @@
 package com.ceitechs.dproz.servicemanagement.adapter.datastore.mongo;
 
 import com.ceitechs.dproz.servicemanagement.domain.ServiceCategory;
+import com.ceitechs.dproz.servicemanagement.domain.ServiceDetail;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -9,6 +10,6 @@ import java.util.List;
 /**
  * @author iddymagohe on 10/23/17.
  */
-public interface CategoryRepository extends MongoRepository<ServiceCategory, Long> {
-    List<ServiceCategory> findByDisciplineIgnoreCase(String discipline);
+public interface ServiceRepository extends MongoRepository<ServiceDetail, String>, ServiceRepositoryCustom {
+    List<ServiceDetail> findByCategoryAndLang(ServiceCategory category, String lang);
 }
