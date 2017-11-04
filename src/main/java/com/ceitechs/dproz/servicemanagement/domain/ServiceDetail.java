@@ -34,7 +34,7 @@ public class ServiceDetail {
     @DBRef
     private ServiceCategory category;
 
-    @TextIndexed
+    @Indexed
     private String serviceDescription;
 
     @Override

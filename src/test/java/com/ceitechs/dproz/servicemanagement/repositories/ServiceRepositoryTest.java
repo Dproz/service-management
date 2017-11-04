@@ -8,11 +8,14 @@ import com.ceitechs.dproz.servicemanagement.domain.ServiceDetail;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.*;
 
 /**
  * @author iddymagohe on 10/24/17.
@@ -64,7 +67,15 @@ public class ServiceRepositoryTest extends AbstractDprozServiceIntegrationTest {
         categoryRepository.save(createCategory());
         ServiceDetail sd = createServiceDetail();
         ServiceDetail svd = serviceDetailRepository.save(sd);
-        List<ServiceDetail> serviceDetails = serviceDetailRepository.findByserviceDescriptionAndLang("fence", "en");
+        ServiceDetail sdsearch = new ServiceDetail();
+        sdsearch.setServiceDescription("ins");
+
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+                .withIgnorePaths("category", "serviceId","serviceNumber")
+                .withMatcher("lang", exact().ignoreCase())
+                .withMatcher("serviceDescription", contains().ignoreCase());
+        List<ServiceDetail> serviceDetails = serviceDetailRepository.findAll(Example.of(sdsearch,exampleMatcher));
+
         assertTrue(serviceDetails.size() > 0);
     }
 
