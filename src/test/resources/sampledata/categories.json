@@ -1,0 +1,17 @@
+/* 1 */
+{
+  "_id" : NumberLong(40),
+  "categoryName" : "Foundations",
+  "discipline" : "Buildings",
+  "categoryDescription" : "Base for buildings",
+  "_class" : "service-category"
+}
+
+/* 2 */
+{
+  "_id" : NumberLong(10),
+  "categoryName" : "Electricity",
+  "discipline" : "Buildings",
+  "categoryDescription" : "Electricity",
+  "_class" : "service-category"
+}

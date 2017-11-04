@@ -1,0 +1,103 @@
+/* 1 */
+{
+  "_id" : ObjectId("59fd11c6d09c6ae3d9ef17df"),
+  "serviceNumber" : NumberLong(101),
+  "lang" : "en",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(1)
+  },
+  "serviceDescription" : "Wrought Iron Fence - Install",
+  "_class" : "services"
+}
+
+/* 2 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08a9"),
+  "serviceNumber" : NumberLong(1001),
+  "lang" : "en",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(10)
+  },
+  "serviceDescription" : "design and installation",
+  "_class" : "services"
+}
+
+/* 3 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08ab"),
+  "serviceNumber" : NumberLong(1002),
+  "lang" : "en",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(10)
+  },
+  "serviceDescription" : "Wiring",
+  "_class" : "services"
+}
+
+/* 4 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08ad"),
+  "serviceNumber" : NumberLong(1001),
+  "lang" : "sw",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(10)
+  },
+  "serviceDescription" : "Kuchimbia mabomba ya nyaya za umeme",
+  "_class" : "services"
+}
+
+/* 5 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08af"),
+  "serviceNumber" : NumberLong(4001),
+  "lang" : "en",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(40)
+  },
+  "serviceDescription" : "Settings",
+  "_class" : "services"
+}
+
+/* 6 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08b1"),
+  "serviceNumber" : NumberLong(4001),
+  "lang" : "sw",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(40)
+  },
+  "serviceDescription" : "kuset msingi",
+  "_class" : "services"
+}
+
+/* 7 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08b3"),
+  "serviceNumber" : NumberLong(4002),
+  "lang" : "sw",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(40)
+  },
+  "serviceDescription" : "Kuchimba msingi",
+  "_class" : "services"
+}
+
+/* 8 */
+{
+  "_id" : ObjectId("59fe4216a78dc5dd7bee08b5"),
+  "serviceNumber" : NumberLong(4003),
+  "lang" : "sw",
+  "category" : {
+    "$ref" : "service-category",
+    "$id" : NumberLong(40)
+  },
+  "serviceDescription" : "kujenga msingi",
+  "_class" : "services"
+}
