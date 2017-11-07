@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface ServicesService {
 
-    List<ServiceDetail> retrieveServicesByCategoryAndLanguage(String categoryId, String language);
+    List<ServiceDetail> retrieveServicesBy(String categoryId, String language);
 
     List<ServiceDetail> retrieveServicesByKeywordAndLanguage(String keyword, String language);
 
