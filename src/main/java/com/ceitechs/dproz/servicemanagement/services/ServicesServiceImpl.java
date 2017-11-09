@@ -35,13 +35,19 @@ public class ServicesServiceImpl implements ServicesService {
 
 
     @Override
-    public List<ServiceDetail> retrieveServicesByCategoryAndLanguage(String categoryId, String language) {
+    public List<ServiceDetail> retrieveServicesBy(String categoryId, String language) {
+
         List<ServiceDetail> serviceDetails = new ArrayList<>();
+
+        if(StringUtils.isEmpty(categoryId)){
+            return serviceRepository.findByLang(StringUtils.isEmpty(language) ? "en" : language);
+        }
 
         Optional<ServiceCategory> category = categoryRepository.findById(Long.valueOf(categoryId));
         if (category.isPresent()) {
             serviceDetails = serviceRepository.findByCategoryAndLang(category.get(), StringUtils.isEmpty(language) ? "en" : language);
         }
+
         return serviceDetails;
     }
 

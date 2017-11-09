@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface ServiceRepository extends MongoRepository<ServiceDetail, String>, QueryByExampleExecutor<ServiceDetail> {
     List<ServiceDetail> findByCategoryAndLang(ServiceCategory category, String lang);
+
+    List<ServiceDetail> findByLang(String lang);
 }
