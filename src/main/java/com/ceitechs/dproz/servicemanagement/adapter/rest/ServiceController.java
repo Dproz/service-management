@@ -34,7 +34,7 @@ public class ServiceController {
     		if(StringUtils.isEmpty(categoryId)) {
         		return ResponseEntity.ok(servicesService.retrieveServicesByKeywordAndLanguage(keyword,lang));
         	} else {
-    			return ResponseEntity.ok(servicesService.retrieveServicesByCategoryAndLanguage(categoryId, lang));
+    			return ResponseEntity.ok(servicesService.retrieveServicesBy(categoryId, lang));
     		}
     		
     	}catch (Exception ex) {
