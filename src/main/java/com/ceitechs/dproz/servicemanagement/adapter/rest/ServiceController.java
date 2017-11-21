@@ -28,13 +28,13 @@ public class ServiceController {
     }
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> serviceDetails(@RequestParam(required=false) String lang, @RequestParam(required=false) String keyword, 
-    		@RequestParam(value="category",required=false) String categoryId){
+    public ResponseEntity<?> serviceDetails(@RequestParam(value="lang", required=false) String lang, @RequestParam(value="keyword", required=false) String keyword, 
+    		@RequestParam(value="category", required=false) String category){
     	try {
-    		if(StringUtils.isEmpty(categoryId)) {
+    		if(StringUtils.isEmpty(category)) {
         		return ResponseEntity.ok(servicesService.retrieveServicesByKeywordAndLanguage(keyword,lang));
         	} else {
-    			return ResponseEntity.ok(servicesService.retrieveServicesBy(categoryId, lang));
+    			return ResponseEntity.ok(servicesService.retrieveServicesBy(category, lang));
     		}
     		
     	}catch (Exception ex) {
